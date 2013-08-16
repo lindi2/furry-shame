@@ -11,6 +11,8 @@ import json
 import requests
 import argparse
 import logging
+import subprocess
+
 
 WEBVM_API_URL = 'http://nm.0xff.fi/api/v1'
 
@@ -22,17 +24,23 @@ class WebVMClient(object):
     def __init__(self, url, *args, **kwargs):
         self._api_url = url
     
+    # TODO: Allow user to log-in w/ username+password & fetch OAuth token
+    
     def cmd_register(self):
         # TODO: Create SSH key
+        # cmd = ['ssh-keygen', '-q', '-t', 'rsa', '-C', 'WebVM Slave key for %s' % slaveid, '-f', outfile, '-N', '']
         # TODO: Submit SSH public key via API
+        # requests.post(api_url, ...), if status == 200, ...
         pass
     
     def cmd_unregister(self):
         # TODO: Sent request to disable this slave, via API
+        # requests.post(...)
         pass
     
     def cmd_destroy_vm(self, uuid):
         # TODO: Destroy VM
+        # (pids, ...)
         pass
     
     def cmd_create_vm(self, uuid):
