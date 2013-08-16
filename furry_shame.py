@@ -10,6 +10,7 @@ import sys
 import json
 import requests
 import argparse
+import logging
 
 WEBVM_API_URL = 'http://nm.0xff.fi/api/v1'
 
@@ -30,8 +31,13 @@ class WebVMClient(object):
         # TODO: Sent request to disable this slave, via API
         pass
     
-    def cmd_create_vm(self):
+    def cmd_destroy_vm(self, uuid):
+        # TODO: Destroy VM
+        pass
+    
+    def cmd_create_vm(self, uuid):
         # TODO: Create new VM
+        # TODO: use webvm_test.sh, collect pids
         pass
     
     
