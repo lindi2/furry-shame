@@ -27,10 +27,12 @@ class WebVMClient(object):
     # TODO: Allow user to log-in w/ username+password & fetch OAuth token
     
     def cmd_register(self):
+        # TODO: Register as a new slave, submit SSH key
         # TODO: Create SSH key
         # cmd = ['ssh-keygen', '-q', '-t', 'rsa', '-C', 'WebVM Slave key for %s' % slaveid, '-f', outfile, '-N', '']
         # TODO: Submit SSH public key via API
         # requests.post(api_url, ...), if status == 200, ...
+        # TODO: receive Slave ID, save to config
         pass
     
     def cmd_unregister(self):
@@ -40,7 +42,7 @@ class WebVMClient(object):
     
     def cmd_destroy_vm(self, uuid):
         # TODO: Destroy VM
-        # (pids, ...)
+        # (pids, kill 'em all!, ...)
         pass
     
     def cmd_create_vm(self, uuid):
