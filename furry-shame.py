@@ -11,21 +11,35 @@ import json
 import requests
 import argparse
 
-WEBVM_API_HOST = 'nm.0xff.fi'
-WEBVM_API_VERSION = "v1"
-WEBVM_API_PROTO = 'https'
-WEBVM_API_BASE = "%(proto)s://%(host)s/api/%(version)s"
+WEBVM_API_URL = 'http://nm.0xff.fi/api/v1'
 
-# TODO: By default, use HTTPS
+WEBVM_CONFIG_PATH = '~/.config/webvm'
+
+# TODO: If config file doesn't exist, create it (using defaults + cli args)
+
+class WebVMClient(object):
+    def __init__(self, url, *args, **kwargs):
+        self._api_url = url
+    
+    def cmd_register(self):
+        # TODO: Create SSH key
+        # TODO: Submit SSH public key via API
+        pass
+    
+    def cmd_unregister(self):
+        # TODO: Sent request to disable this slave, via API
+        pass
+    
+    def cmd_create_vm(self):
+        # TODO: Create new VM
+        pass
+    
+    
 
 def main(args):
-    api_url = WEBVM_API_BASE % {
-        'proto': WEBVM_API_PROTO,
-        'host': args.host,
-        'version': WEBVM_API_VERSION,
-        
-    }
+    slave = WebVMClient(url=args.api_url)
     
+    print 'API: %s' % url
     
     
     return 0
@@ -34,7 +48,10 @@ def run():
     parser = argparse.ArgumentParser(
         description='WebVM Slave Client',
     )
-    parser.add_argument('--host', dest='host', help='API server', default=WEBVM_API_HOST)
+    parser.add_argument('--api-url', dest='api_url', help='API URL', default=WEBVM_API_URL)
+    parser.add_argument('-u', '--username', dest='username', help='API username')
+    parser.add_argument('-p', '--password', dest='password', help='API password')
+    parser.add_argument('command')
     
     args = parser.parse_args()
     sys.exit(main(args))
